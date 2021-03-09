@@ -1,0 +1,127 @@
+<form [formGroup]="shippingForm" class="form-signin my-container" (ngSubmit)="onSubmit()" novalidate>
+     <h3> Shipping Information</h3>
+  
+    <div class="form-group text-left">
+      <label for="name">Name</label>
+
+        <input formControlName="name" type="text" id="name" class="form-control form-control-sm" placeholder="Enter Full Name" autofocus   maxlength="70">
+  
+        <div class="alert alert-danger p-0 pl-2 pl-2 mb-0" role="alert"
+          *ngIf="shippingForm.controls['name'].touched && shippingForm.controls['name'].hasError('required')">
+          Full Name is <strong>Required</strong>
+        </div>
+
+    </div>
+
+    <div class="form-group text-left">
+      <label for="address">Address</label>
+      
+        <input formControlName="address" type="text" id="address" class="form-control form-control-sm" placeholder="Enter address"  maxlength="200">
+  
+        <div class="alert alert-danger p-0 pl-2 mb-0" role="alert"
+          *ngIf="shippingForm.controls['address'].touched && shippingForm.controls['address'].hasError('required')">
+          Address is <strong>Required</strong>
+        </div>
+      </div>
+
+
+    <div class="form-group text-left">
+      <label for="apartment">Apartment</label>
+      
+        <input formControlName="apartment" type="text" id="apartment" class="form-control form-control-sm" placeholder="Enter Apartment or Suit" maxlength="10">
+  
+        <div class="alert alert-danger p-0 pl-2 mb-0" role="alert"
+          *ngIf="shippingForm.controls['apartment'].touched && shippingForm.controls['apartment'].hasError('required')">
+          Suit or Apartment is <strong>Required</strong>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group text-left col-md-6">
+        <label for="zipCode">ZipCode</label>
+
+          <input formControlName="zipCode" type="number" id="zipCode" class="form-control form-control-sm" placeholder="Enter Zip Code">
+
+          <div class="alert alert-danger p-0 pl-2 mb-0" role="alert"
+            *ngIf="shippingForm.controls['zipCode'].touched && shippingForm.controls['zipCode'].hasError('required')">
+            Zip Code is <strong>Required</strong>
+          </div>
+
+          <div class="alert alert-danger p-0  pl-2 mb-0" role="alert" *ngIf="shippingForm.controls['zipCode'].hasError('max')
+          && !shippingForm.controls['zipCode'].hasError('required') && shippingForm.controls['zipCode'].touched">
+            Wrong Format
+            </div>
+        </div>
+
+
+        <div class="form-group text-left col-md-6">
+        <label for="city">City</label>
+
+          <input formControlName="city" type="text" id="city" class="form-control form-control-sm" placeholder="Enter City" maxlength="50">
+
+          <div class="alert alert-danger p-0 pl-2 mb-0" role="alert"
+            *ngIf="shippingForm.controls['city'].touched && shippingForm.controls['city'].hasError('required')">
+            City is <strong>Required</strong>
+          </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group text-left col-md-6">
+      <label for="states">State</label>
+      
+        <select formControlName="state" id="states" class="form-control form-control-sm">
+          <option *ngFor="let state of states" [value]="state.abbreviation">{{state.name}}</option>
+        </select>
+      </div>
+
+
+    <div class="form-group text-left col-md-6">
+      <label for="country">Country</label>
+      
+        <input formControlName="country" type="text" id="country" class="form-control form-control-sm" placeholder="Enter Country" disabled>
+  
+        <div class="alert alert-danger p-0 pl-2 mb-0" role="alert"
+          *ngIf="shippingForm.controls['country'].touched && shippingForm.controls['country'].hasError('required')">
+          Country is <strong>Required</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group text-left">
+      <label for="phone">Phone</label>
+      
+        <input formControlName="phone" type="text" id="phone" class="form-control form-control-sm" placeholder="Enter Phone Ex. 7867185859,  786-748-7845">
+  
+        <div class="alert alert-danger p-0 pl-2 mb-0" role="alert"
+          *ngIf="shippingForm.controls['phone'].touched && shippingForm.controls['phone'].hasError('required')">
+          Phone is <strong>Required</strong>
+        </div>
+        <div class="alert alert-danger p-0 mb-0" role="alert" *ngIf="shippingForm.controls['phone'].hasError('phone')
+        && !shippingForm.controls['phone'].hasError('required') && shippingForm.controls['phone'].touched">
+          Not a valid <strong>US Phone</strong>
+         </div>
+      </div>
+
+
+    <div class="form-group text-left">
+      <label for="email">Email</label>
+      
+        <input formControlName="email" type="email" id="email" class="form-control form-control-sm" placeholder="Enter Email" autofocus  maxlength="100">
+  
+        <div class="alert alert-danger p-0 pl-2 mb-0" role="alert"
+          *ngIf="shippingForm.controls['email'].touched && shippingForm.controls['email'].hasError('required')">
+          Email is <strong>Required</strong>
+        </div>
+        <div class="alert alert-danger p-0 mb-0" role="alert" *ngIf="shippingForm.controls['email'].hasError('email')
+        && !shippingForm.controls['email'].hasError('required') && shippingForm.controls['email'].touched">
+          Not a valid <strong>Email</strong>
+         </div>
+      </div>
+
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-lg btn-dark" type="submit">Continue Check Out</button>
+    </div>
+  </form>
+  

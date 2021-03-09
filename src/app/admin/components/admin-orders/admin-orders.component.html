@@ -1,0 +1,28 @@
+<div class="my-container">
+  <h1>Manage Orders</h1>
+  <ng-container *ngIf="orders">
+    <p class="d-flex justify-content-between">
+      You have {{ orders.length }} placed orders.
+    </p>
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Customer</th>
+          <th scope="col">Date</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>{{ order.shipping.name }}</td>
+          <td>{{ order.datePlaced | date }}</td>
+          <td>
+            <a [routerLink]="order._id" class="text-dark">
+              <i class="fa fa-search fg-lg"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+  <div>

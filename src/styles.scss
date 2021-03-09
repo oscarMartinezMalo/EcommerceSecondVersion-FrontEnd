@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~font-awesome/css/font-awesome.css';
+
+:root {
+  --primary: #343a40;
+}
+
+body {
+  height: 100vh;
+  padding: 0;
+  background-color: #f8f9fa;
+}
+
+.my-container{
+  // padding-top: 50px;
+  width: 80%;
+  margin: auto;
+}
+
+.form-control:focus {
+    border-color: #343a40;
+    box-shadow: 0 0 0 0.2rem rgba(97, 97, 97, 0.25);
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    background-color: #343a40;
+}
+
+main {
+  position: relative;
+}
+
+@media only screen and (max-width: 600px) {
+  .my-container {
+    width: 98%;
+  }
+}

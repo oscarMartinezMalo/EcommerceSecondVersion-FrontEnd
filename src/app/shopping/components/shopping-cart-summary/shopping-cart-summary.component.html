@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+  <div class="card text-center" *ngIf="cart" style="max-width: 500px;">
+    <div class="card-header">
+      <h4 class="card-title mb-0">Order Summary</h4>
+    </div>
+    <div class="card-body">
+
+      <p class="card-text">You have {{cart.totalItemsCount}} items in your shopping cart</p>
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let item of cart.items" class="list-group-item">
+          <div class="float-left mr-5">
+            {{item.quantity}} x {{item.product.title}}
+          </div>
+          <div class="float-right">
+            {{item.totalPrice | currency:'USD':true}}
+          </div>
+        </li>
+
+        <li class="list-group-item small font-weight-bold">
+          <div class="float-left mr-5">
+            Taxes
+          </div>
+          <div class="float-right">
+            {{cart.taxes | currency:'USD':true}}
+          </div>
+        </li>
+
+        <li class="list-group-item small font-weight-bold">
+          <div class="float-left mr-5">
+            Shipping & Handling
+          </div>
+          <div class="float-right">
+            {{cart.shipping | currency:'USD':true}}
+          </div>
+        </li>
+
+        <li class="list-group-item font-weight-bold">
+          <div class="float-left">
+            Total
+          </div>
+          <div class="float-right">
+            {{cart.totalPriceTaxesShipping | currency:'USD':true}}
+          </div>
+        </li>
+      </ul>
+    </div>
+    <!-- <div class="card-footer text-muted">
+  </div> -->
+  </div>
+
+</div>

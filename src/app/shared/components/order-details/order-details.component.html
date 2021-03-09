@@ -1,0 +1,59 @@
+<div class="row justify-content-center my-container">
+  <div class="card text-center" *ngIf="order" style="max-width: 600px;">
+    <div class="card-header">
+      <h4 class="card-title mb-0">Order Summary</h4>
+    </div>
+    <div class="card-body">
+      <img *ngFor="let itemPic of order.items" [src]="itemPic.product.imageUrl" class="thumbnail" alt="Item Picture">
+      <p class="card-text">You ordered {{order.items.length}} items</p>
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let item of order.items" class="list-group-item">
+          <div class="float-left">
+            {{item.quantity}} x {{item.product.title}}
+          </div>
+          <div class="float-right">
+            {{item.totalPrice | currency:'USD':true}}
+          </div>
+        </li>
+        <li class="list-group-item font-weight-bold">
+          <div class="float-left">
+            Grand Total
+          </div>
+          <div class="float-right">
+            {{totalPrice | currency:'USD':true }}
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <hr class="mt-0 mb-0">
+    <div class="card-header divider">
+      <h4 class="card-title mb-0">Shipping Address</h4>
+    </div>
+    <div class="card-body">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <!-- <div class="float-left mr-5"> Customer </div> -->
+          <div class="float-left">{{order.shipping.name}}</div>
+        </li>
+        <li class="list-group-item">
+          <!-- <div class="float-left mr-5"> Address </div> -->
+          <div class="float-left">{{order.shipping.address}}, {{order.shipping.apartment}}</div>
+        </li>
+        <li class="list-group-item">
+          <!-- <div class="float-left  mr-5"> City </div> -->
+          <div class="float-left">{{order.shipping.zipCode}}, {{order.shipping.city}}, {{order.shipping.state}}, {{order.shipping.country}}</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card-footer text-muted">
+      <div class="float-left">
+        Ordered on
+      </div>
+      <div class="float-right">
+        {{ order.datePlaced | date}}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+.row {
+  height: 100%;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+.background-image {
+  background-image: url("../../../../assets/background.jpg");
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+}
+
+.first-row {
+  height: 100%;
+  background-color: black;
+}
+
+div.button-box {
+  width: 200px;
+  margin-left: calc(25% - 100px);
+  margin-bottom: 10%;
+  text-align: center;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-style: oblique;
+
+  p {
+    font-size: 18px;
+    padding-bottom: 7px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  div.button-box {
+    width: 150px;
+    margin-left: calc(25% - 75px);
+  }
+}
+
+.background-image, div.button-box {
+  animation: flipInX 2s ease-in;
+}
+
+
+@keyframes flipInX {
+  from {
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  40% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    animation-timing-function: ease-in;
+  }
+
+  60% {
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+
+  80% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+
+  to {
+    transform: perspective(400px);
+  }
+}

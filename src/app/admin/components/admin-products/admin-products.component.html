@@ -1,0 +1,40 @@
+<div class="my-container">
+  <a [routerLink]="['/admin/products/new']" routerLinkActive="router-link-active" class="btn btn-secondary mb-4">New
+    Product</a>
+
+  <p>
+    <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search---">
+  </p>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of filterProducts">
+        <td>{{ p.title }}</td>
+        <td>{{ p.price}}</td>
+        <td>
+          <a [routerLink]="['/admin/products/', p.id]" routerLinkActive="router-link-active" class="text-dark">
+            <i class="fa fa-edit fa-lg"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="(5)!" [page]="1" [pageSize]="3">
+    </ngb-pagination>
+
+    <select class="custom-select" style="width: auto">
+      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="4">4 items per page</option>
+      <option [ngValue]="6">6 items per page</option>
+    </select>
+  </div>
+</div>

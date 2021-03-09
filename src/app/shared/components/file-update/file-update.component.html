@@ -1,0 +1,29 @@
+  <fieldset class="border p-2">
+    <legend class="w-auto">Select at least one Picture</legend>
+
+    <div class="form-group d-flex justify-content-between">
+        <div class="imageElement">
+            <input #imageOne style="display: none;" type="file" (change)="onFileSelected($event)" id="image-0" required/>
+            <img [src]="this.fileList[0].imageUrl ? this.fileList[0].imageUrl : imageAddUrl" class="imageUpload border border-secondary rounded" (click)="imageOne.click()">
+            <button *ngIf="this.fileList[0].file" type="button" class="close upload-close" aria-label="Close" (click)="onDeleteFile(0)">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="imageElement">
+            <input #imageTwo  style="display: none;"  type="file" (change)="onFileSelected($event)" id="image-1"/>
+            <img [src]="this.fileList[1].imageUrl ? this.fileList[1].imageUrl : imageAddUrl" class="imageUpload border border-secondary rounded" (click)="imageTwo.click()">
+            <button *ngIf="this.fileList[1].file" type="button" class="close upload-close" aria-label="Close" (click)="onDeleteFile(1)">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="imageElement">
+            <input #imageThird  style="display: none;"  type="file" (change)="onFileSelected($event)" id="image-2"/>
+            <img [src]="this.fileList[2].imageUrl ? this.fileList[2].imageUrl : imageAddUrl" class="imageUpload border border-secondary rounded" (click)="imageThird.click()">
+            <button *ngIf="this.fileList[2].file" type="button" class="close upload-close" aria-label="Close" (click)="onDeleteFile(2)">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+</fieldset>

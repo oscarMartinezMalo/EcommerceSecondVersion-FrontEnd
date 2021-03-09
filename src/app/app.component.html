@@ -1,0 +1,6 @@
+<app-navbar>
+  <div [@routeAnimations]="outlet.isActivated ? outlet.activatedRoute : ''" style="height: 100%;">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
+</app-navbar>
+

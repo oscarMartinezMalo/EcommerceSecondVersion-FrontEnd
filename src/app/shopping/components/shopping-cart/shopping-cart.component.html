@@ -1,0 +1,48 @@
+<div class="my-container">
+  <h1>Shopping Cart</h1>
+  <ng-container *ngIf="cart$ | async as cart ">
+    <p class="d-flex justify-content-between">
+      <span>{{ cart.totalItemsCount }} items in your shopping cart.</span>
+      <a *ngIf="cart.items?.length" class="btn btn-secondary btn-sm mb-5" [routerLink]="['/check-out']">
+        Check Out
+      </a>
+    </p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th style="width: 80px;" class="d-none d-md-table-cell"></th>
+          <th class="text-center">Product</th>
+          <th style="width: 230px;" class="text-center">Quantity</th>
+          <th class="text-right">Price</th>
+        </tr>
+      </thead>
+      <tbody @slide>
+        <tr *ngFor="let item of cart?.items">
+          <td style="width: 80px;" class="d-none d-md-table-cell">
+            <!-- <img [src]="item.product.imageUrl" class="thumbnail" alt=""> -->
+            <div [style.backgroundImage]="'url(' + item.product.imageUrl +')'" class="thumbnail"></div>
+          </td>
+          <td class="text-center">{{ item.product.title }}</td>
+          <td>
+            <app-product-quantity [cart]="cart" [product]="item.product"></app-product-quantity>
+          </td>
+          <td class="text-right">{{ item.totalPrice | currency:'USD':true }}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th class="d-none d-md-table-cell"></th>
+          <th></th>
+          <th></th>
+          <th class="text-right">{{ cart.totalPrice| currency:'USD':true }}</th>
+        </tr>
+      </tfoot>
+    </table>
+    <div  class="d-flex justify-content-end">
+      <button *ngIf="cart.items?.length" class="btn btn-outline-danger btn-sm" (click)="clearCart()">
+        Clear Shopping Cart
+      </button>
+    </div>
+  </ng-container>
+</div>

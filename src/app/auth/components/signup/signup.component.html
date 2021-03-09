@@ -1,0 +1,46 @@
+<form [formGroup]="signupForm" class="form-signup text-center my-container" (ngSubmit)="onSubmit()" novalidate>
+  <img class="mb-4" src="../../../assets/onlyIcon.svg" alt="" height="70">
+
+  <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
+
+  <div class="form-label-group input-group-lg">
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email address"
+      autocomplete="username" autofocus>
+    <!-- Errors -->
+    <div class="alert alert-danger p-0 mb-0" role="alert"
+      *ngIf="signupForm.controls['email'].touched && signupForm.controls['email'].hasError('required')">
+      Email <strong>Required</strong>
+    </div>
+    <div class="alert alert-danger p-0 mb-0" role="alert" *ngIf="signupForm.controls['email'].hasError('email')
+          && !signupForm.controls['email'].hasError('required')
+          && signupForm.controls['email'].touched">
+      Not a valid <strong>Email</strong>
+    </div>
+  </div>
+
+  <div class="form-label-group  input-group-lg">
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password"
+      autocomplete="new-password" required>
+    <!-- Errors -->
+    <div *ngIf="signupForm.controls['password'].touched">
+      <div class="alert alert-danger p-0 mb-0" role="alert"
+        *ngIf="signupForm.controls['password'].hasError('required')">
+        Password <strong>Required</strong>
+      </div>
+      <div class=" alert alert-danger p-0 mb-0" role="alert"
+        *ngIf="signupForm.controls['password'].hasError('minlength') && !signupForm.controls['password'].hasError('required')">
+        More than <strong>5 Characters</strong>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-lg btn-dark btn-block" type="submit">Sign up</button>
+  <p class="mt-2 mb-3 text-center" >Already have an account? <a [routerLink]="['/login']">Sign-In</a></p>
+  <p class="mt-5 mb-3 text-muted">&copy; 2020-2031</p>
+  <!-- Form Error -->
+  <div class="alert alert-danger p-0 mb-0" role="alert" *ngIf="signupForm.hasError('accountExit')">
+    Account {{signupForm.controls['email'].value}} already <strong>Exist</strong>
+  </div>
+</form>
