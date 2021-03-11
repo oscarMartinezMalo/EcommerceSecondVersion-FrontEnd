@@ -3,8 +3,13 @@
    width: 100px;
  }
 
- .imageElement {
+ .images-container {
+   overflow-x: scroll;
+ }
+
+ .image-element {
    position: relative;
+   margin: 0 3px 0 3px;
  }
  
  button.upload-close  {

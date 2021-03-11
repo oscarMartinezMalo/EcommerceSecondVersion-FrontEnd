@@ -1,29 +1,21 @@
-  <fieldset class="border p-2">
+<fieldset class="images-container border p-2  d-flex justify-content-left">
     <legend class="w-auto">Select at least one Picture</legend>
 
-    <div class="form-group d-flex justify-content-between">
-        <div class="imageElement">
-            <input #imageOne style="display: none;" type="file" (change)="onFileSelected($event)" id="image-0" required/>
-            <img [src]="this.fileList[0].imageUrl ? this.fileList[0].imageUrl : imageAddUrl" class="imageUpload border border-secondary rounded" (click)="imageOne.click()">
-            <button *ngIf="this.fileList[0].file" type="button" class="close upload-close" aria-label="Close" (click)="onDeleteFile(0)">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-
-        <div class="imageElement">
-            <input #imageTwo  style="display: none;"  type="file" (change)="onFileSelected($event)" id="image-1"/>
-            <img [src]="this.fileList[1].imageUrl ? this.fileList[1].imageUrl : imageAddUrl" class="imageUpload border border-secondary rounded" (click)="imageTwo.click()">
-            <button *ngIf="this.fileList[1].file" type="button" class="close upload-close" aria-label="Close" (click)="onDeleteFile(1)">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-
-        <div class="imageElement">
-            <input #imageThird  style="display: none;"  type="file" (change)="onFileSelected($event)" id="image-2"/>
-            <img [src]="this.fileList[2].imageUrl ? this.fileList[2].imageUrl : imageAddUrl" class="imageUpload border border-secondary rounded" (click)="imageThird.click()">
-            <button *ngIf="this.fileList[2].file" type="button" class="close upload-close" aria-label="Close" (click)="onDeleteFile(2)">
+    <div *ngFor="let file of fileList; let i = index" class="form-group" style="margin-bottom: 0px;" >     
+        <div class="image-element">
+            <img [src]="this.fileList[i].imageUrl ? this.fileList[i].imageUrl : ''" class="imageUpload border border-secondary rounded">
+            <button *ngIf="this.fileList[i]" type="button" class="close upload-close" aria-label="Close" (click)="onDeleteImage(i)">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
     </div>
+
+    <div class="image-element align-self-center">
+        <input #addImage style="display: none;" type="file" (change)="onFileSelected($event)" id="image-0" required/>
+        <i class="fa fa-plus-circle" style="font-size: 85px; margin: 7px"  (click)="addImage.click();"></i>
+        <!-- <div *ngIf="showSpinner" class="spinner-border" role="status" style="margin: 22px;">
+            <span class="sr-only">Loading...</span>
+        </div> -->
+    </div>
+
 </fieldset>

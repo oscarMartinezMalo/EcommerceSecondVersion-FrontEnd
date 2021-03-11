@@ -16,6 +16,7 @@ export class ProductFormComponent implements OnInit {
   product: Product = {};
   id: string;
   fileList: FileUrl[]= [];
+  imageArray: string[];
 
   constructor(
     private route: ActivatedRoute,
@@ -29,12 +30,17 @@ export class ProductFormComponent implements OnInit {
     if ( this.id ) {
       this.productService.getById(this.id).pipe(take(1)).subscribe(p => this.product = p );
     }
+
+    this.imageArray = ['https://image.shutterstock.com/image-photo/pedestrian-bridge-photographer-600w-1083676763.jpg',
+    'https://image.shutterstock.com/image-photo/yacht-racing-sport-600w-1077224210.jpg',
+    'https://image.shutterstock.com/image-photo/johns-county-ocean-pier-600w-1076201669.jpg',
+    'https://image.shutterstock.com/image-photo/triumphal-arch-below-600w-1079227055.jpg']
   }
 
   ngOnInit(): void { }
 
   async onSave( product: Product) {    
-    // if(this.fileList.length < 1) { alert("You have to select at least one Image"); return; }
+    if(this.fileList.length < 1) { alert("You have to select at least one Image"); return; }
 
     // Submit the form as FormData to also send files
     // const formData = new FormData();
@@ -57,5 +63,9 @@ export class ProductFormComponent implements OnInit {
       await this.productService.delete(this.id);
       this.router.navigate(['/admin/products']);
     }
+  }
+
+  onFileChange(event) {
+    this.fileList = event;
   }
 }

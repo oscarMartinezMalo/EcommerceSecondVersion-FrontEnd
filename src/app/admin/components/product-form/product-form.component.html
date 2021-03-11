@@ -51,13 +51,14 @@
         </div>
       </div>
 
+      <app-file-update [imageList]="imageArray" (newItemEvent)="onFileChange($event)"></app-file-update>
+
       <div class="form-group d-flex justify-content-between">
         <button class="btn btn-dark mt-2 mb-2 " [disabled]="!f.form.valid">Save</button>
         <button type="button" class="btn btn-outline-danger m-2" (click)="delete()"
           [disabled]="!f.form.valid">Delete</button>
       </div>
     </form>
-
 
     <div class="col-md-6" *ngIf="product.title">
       <app-product-card [product]="product" justify-content-center class="row justify-content-center">

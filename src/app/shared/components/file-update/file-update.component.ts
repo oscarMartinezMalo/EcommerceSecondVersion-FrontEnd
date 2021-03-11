@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, HostListener, Input } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 import { FileUrl } from './fileUrl.model';
 
@@ -7,38 +7,36 @@ import { FileUrl } from './fileUrl.model';
   templateUrl: './file-update.component.html',
   styleUrls: ['./file-update.component.scss']
 })
-export class FileUpdateComponent {
+export class FileUpdateComponent implements OnInit {
   @Output() newItemEvent = new EventEmitter<FileUrl[]>();
-
-  fileList: FileUrl[] = [{file: null, imageUrl: ''}, {file: null, imageUrl: ''}, {file: null, imageUrl: ''}];
+  @Input() imageList: string[];
   imageAddUrl = './assets/addProduct.png';
+  fileList: FileUrl[] = [];
+
   constructor() { }
 
-  getFileList(): FileUrl[]{
-    let imageList: FileUrl[] = [];
-    this.fileList.forEach((fileObj: FileUrl)=>{  if(fileObj.file) imageList.push(fileObj);  });
-    return imageList;
-  }    
-    async onFileSelected(event){
-      let imagePositionNumber = event.target.id.split('-')[1];
-      this.fileList[imagePositionNumber].file = event.target.files[0];
-      
-      const reader = new FileReader();  
-      this.fileList[imagePositionNumber].imageUrl = await this.parseFile(this.fileList[imagePositionNumber].file) as string;
-      
-      let files = this.getFileList();
-      this.newItemEvent.emit(files);
+  ngOnInit(): void {
+    this.imageList.forEach(imgUrl =>{  
+      this.fileList.push({file: null, imageUrl: imgUrl});
+     })
   }
 
-  onDeleteFile(position){
-      this.fileList[position]={file: null, imageUrl: null};
-      let files = this.getFileList();
-      this.newItemEvent.emit(files);
+  async onFileSelected(event){         
+      const fileSelected = event.target.files[0];
+      const imageUrl = await this.parseFile(fileSelected) as string; 
+
+      this.fileList.push({file: fileSelected, imageUrl: imageUrl });
+
+      this.newItemEvent.emit(this.fileList);
+  }
+
+  onDeleteImage(index: number) {
+    this.fileList.splice(index, 1);
+    this.newItemEvent.emit(this.fileList);
   }
 
   parseFile(file: File) {
     return new Promise((resolve, reject) => {
-      let content = '';
       const reader = new FileReader();
 
       reader.onload = (e: any) => {
@@ -48,7 +46,11 @@ export class FileUpdateComponent {
       reader.onerror = function(e: any) {
         reject(e);
       };
-      reader.readAsDataURL( file);
+      reader.readAsDataURL(file);
     });
+  }
+
+  onImageBox( index: number ) {
+    (<HTMLInputElement>document.getElementById('image-'+ index)).click();
   }
 }
