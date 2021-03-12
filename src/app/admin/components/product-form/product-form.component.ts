@@ -5,13 +5,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { Product } from 'shared/models/product.model';
 import { FileUrl } from 'shared/components/file-update/fileUrl.model';
+import { file } from '@rxweb/reactive-form-validators';
 
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss']
 })
-export class ProductFormComponent implements OnInit {
+export class ProductFormComponent{
   categories$;
   product: Product = {};
   id: string;
@@ -28,32 +29,30 @@ export class ProductFormComponent implements OnInit {
 
     this.id = this.route.snapshot.paramMap.get('id');
     if ( this.id ) {
-      this.productService.getById(this.id).pipe(take(1)).subscribe(p => this.product = p );
+      this.productService.getById(this.id).pipe(take(1)).subscribe( p =>{
+        this.product = p;        
+      } );
     }
-
-    this.imageArray = ['https://image.shutterstock.com/image-photo/pedestrian-bridge-photographer-600w-1083676763.jpg',
-    'https://image.shutterstock.com/image-photo/yacht-racing-sport-600w-1077224210.jpg',
-    'https://image.shutterstock.com/image-photo/johns-county-ocean-pier-600w-1076201669.jpg',
-    'https://image.shutterstock.com/image-photo/triumphal-arch-below-600w-1079227055.jpg']
   }
 
-  ngOnInit(): void { }
-
-  async onSave( product: Product) {    
+  async onSave( product: Product) {
     if(this.fileList.length < 1) { alert("You have to select at least one Image"); return; }
 
     // Submit the form as FormData to also send files
-    // const formData = new FormData();
-    // formData.append('title', product.title);
-    // formData.append('price', product.price.toString());
-    // formData.append('category', product.category );
-    // formData.append('imageUrl', product.imageUrl);
-    // this.fileList.forEach(fileObj =>{ formData.append('files', fileObj.file, fileObj.file.name); })
+    const formData = new FormData();
+    formData.append('title', product.title);
+    formData.append('price', product.price.toString());
+    formData.append('category', product.category );
+    formData.append('imageUrl', product.imageUrl);
+    // Add the files that were attach to the formData
+    this.fileList.forEach(fileObj =>{  if(fileObj.file) formData.append('files', fileObj.file, fileObj.file.name); });
 
     if ( this.id ) {
-      await this.productService.update(this.id, product);
+      // Filter the URLs that came from the BackEnd to check if the user delete some picture
+      this.fileList.map( fileObj =>{ if(fileObj.file == null) formData.append('imagesUrls', fileObj.imageUrl); });
+      await this.productService.update(this.id, formData);
     } else {
-      await this.productService.create(product);
+      await this.productService.create(formData);
     }
     this.router.navigate(['/admin/products']);
   }

@@ -62,9 +62,9 @@ export class ProductFormFileComponent implements OnInit {
   getfileList(imagesList: FileUrl[]){    
     console.log('prod', imagesList);
     this.fileList = imagesList;
-    this.product.images = [];
+    this.product.imagesUrls = [];
     imagesList.forEach(fileObj =>{ 
-      this.product.images.push( fileObj.imageUrl);
+      this.product.imagesUrls.push( fileObj.imageUrl);
      });
   }
 }

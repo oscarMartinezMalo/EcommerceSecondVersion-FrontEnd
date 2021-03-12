@@ -7,7 +7,7 @@ import { FileUrl } from './fileUrl.model';
   templateUrl: './file-update.component.html',
   styleUrls: ['./file-update.component.scss']
 })
-export class FileUpdateComponent implements OnInit {
+export class FileUpdateComponent {
   @Output() newItemEvent = new EventEmitter<FileUrl[]>();
   @Input() imageList: string[];
   imageAddUrl = './assets/addProduct.png';
@@ -15,10 +15,12 @@ export class FileUpdateComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-    this.imageList.forEach(imgUrl =>{  
-      this.fileList.push({file: null, imageUrl: imgUrl});
-     })
+  ngOnChanges(changes) {
+    if(changes.imageList){
+      changes.imageList.currentValue?.forEach(imgUrl =>{  
+        this.fileList.push({file: null, imageUrl: imgUrl});
+       })
+    }
   }
 
   async onFileSelected(event){         

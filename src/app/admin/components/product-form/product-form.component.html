@@ -51,7 +51,7 @@
         </div>
       </div>
 
-      <app-file-update [imageList]="imageArray" (newItemEvent)="onFileChange($event)"></app-file-update>
+      <app-file-update [imageList]="product.imagesUrls" (newItemEvent)="onFileChange($event)"></app-file-update>
 
       <div class="form-group d-flex justify-content-between">
         <button class="btn btn-dark mt-2 mb-2 " [disabled]="!f.form.valid">Save</button>
