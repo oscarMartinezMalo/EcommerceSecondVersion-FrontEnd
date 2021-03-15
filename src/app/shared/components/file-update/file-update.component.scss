@@ -4,15 +4,48 @@
  }
 
  .images-container {
-   overflow-x: scroll;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+  margin: 0px;
+  min-height: 100px;
  }
 
  .image-element {
+   display: inline-block;
    position: relative;
    margin: 0 3px 0 3px;
  }
- 
+
  button.upload-close  {
   position: absolute;
   right: 5px;
+}
+
+.form-group {
+  display: inline-block;
+  margin: 0px;
+}
+
+.fa-plus-circle {
+  font-size: 54px;
+  top: 15px;
+  position: relative;
+}
+
+
+.custom-scrollbar-css::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* scrollbar track */
+.custom-scrollbar-css::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+/* scrollbar handle */
+.custom-scrollbar-css::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: #00d2ff;
+  background-image: linear-gradient(to top, #00d2ff 0%, #3a7bd5 100%);
 }
