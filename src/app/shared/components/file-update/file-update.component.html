@@ -1,7 +1,7 @@
 <fieldset class="constainer border p-2">
   <legend class="w-auto">Select At Least One Picture</legend>
   <div class="row">
-    <div class="col-10">
+    <div class="col-9 pr-0">
         <div #rowImages class="row images-container custom-scrollbar-css">
           <div *ngFor="let file of fileList; let i = index" class="form-group" style="margin-bottom: 0px; width:fit-content;">
             <div class="image-element">
@@ -15,20 +15,20 @@
           </div>
         </div>
 
-              <a  type="button" (click)="onPrevious()" class="carousel-control-prev" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a  (click)="onNext()" class="carousel-control-next" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
+        <a *ngIf="scrollShowing" type="button" (click)="onPrevious()" class="carousel-control-prev" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a *ngIf="scrollShowing" (click)="onNext()" class="carousel-control-next" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
     </div>
-    <div class="col-2 p-0">
+    <div class="col-3 p-0 text-center">
           <div class="form-group">
             <div class="image-element">
               <input #addImage style="display: none;" type="file" (change)="onFileSelected($event)" id="image-0" required />
-              <i class="fa fa-plus-circle" (click)="addImage.click();"></i>
+              <i class="fa fa-plus add-icon" (click)="addImage.click();"></i>
             </div>
           </div>
     </div>

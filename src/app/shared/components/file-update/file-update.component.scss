@@ -10,6 +10,7 @@
   white-space: nowrap;
   margin: 0px;
   min-height: 100px;
+  max-width: 385px;
  }
 
  .image-element {
@@ -28,16 +29,16 @@
   margin: 0px;
 }
 
-.fa-plus-circle {
+.add-icon {
   font-size: 54px;
   top: 25px;
   position: relative;
-  -webkit-transition: -webkit-transform .5s ease-in-out;
-  transition:         transform .5s ease-in-out;
+  -webkit-transition: -webkit-transform .3s ease-in-out;
+  transition: transform .3s ease-in-out;
 }
-.fa-plus-circle:hover {
-  -webkit-transform: rotate(180deg);
-    transform: rotate(180deg);
+.add-icon:hover {
+  -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
 }
 
 .custom-scrollbar-css::-webkit-scrollbar {
@@ -75,13 +76,15 @@ span.carousel-control-next-icon[_ngcontent-jyp-c120], span.carousel-control-prev
 a.carousel-control-prev {
     height: fit-content;
     width: auto;
-    left: 20px;
+    left: 35px;
     top: 38%;
+    // opacity: 1;
 }
 
 a.carousel-control-next {
     height: fit-content;
     width: auto;
-    right: 20px;
+    right: 10px;
     top: 38%;
+    // opacity: 1;
 }
