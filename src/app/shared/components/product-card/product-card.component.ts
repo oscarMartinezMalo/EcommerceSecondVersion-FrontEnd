@@ -15,7 +15,7 @@ export class ProductCardComponent {
 
   constructor(
     private cartService: ShoppingCartService
-  ) { }
+  ) {}
 
   async addToCart() {
     await this.cartService.addToCart(this.product);

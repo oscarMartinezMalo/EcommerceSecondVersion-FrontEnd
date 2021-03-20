@@ -1,8 +1,8 @@
 <div class="card" style="width: 20rem;border:.5px solid gainsboro;" class="mt-3" *ngIf="product.title">
-  <img class="card-img-top" style=" height: 250px;" [src]="product.imageUrl" alt="Card image cap"
-    *ngIf="product.imageUrl">
-  <!-- <img class="card-img-top" style=" height: 250px;" [src]="product.images ? product.images[0]: ''" alt="Card image cap"
-    *ngIf="product.images?.length"> -->
+  <!-- <img class="card-img-top" style=" height: 250px;" [src]="product.imagesUrls[0]" alt="Card image cap"
+    *ngIf="product.imageUrl"> -->
+  <img class="card-img-top" style=" height: 250px;" [src]="product.imagesUrls ? product.imagesUrls[0] : ''" alt="Card image cap"
+    *ngIf="product.imagesUrls?.length">
   <div class="card-body">
     <h5 class="card-title">{{product.title}}</h5>
     <p class="card-text">{{ product.price | currency:'USD':true}}</p>
@@ -13,6 +13,5 @@
     <ng-template #updateQuantity>
     <app-product-quantity [cart]="cart" [product]="product"></app-product-quantity>
     </ng-template>
-
   </div>
 </div>

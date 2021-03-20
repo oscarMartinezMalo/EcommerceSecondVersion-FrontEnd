@@ -19,7 +19,7 @@ export class ProductFormComponent{
   categories$;
   product: Product = {};
   id: string;
-  fileList: FileUrl[]= [];
+  fileList: FileUrl[] = [];
   imageArray: string[];
 
   constructor(
@@ -54,11 +54,11 @@ export class ProductFormComponent{
     formData.append('category', product.category );
     formData.append('imageUrl', product.imageUrl);
     // Add the files that were attach to the formData
-    this.fileList.forEach(fileObj =>{  if(fileObj.file) { formData.append('files', fileObj.file, fileObj.file.name); } });
+    this.fileList.forEach(fileObj => {  if (fileObj.file) { formData.append('files', fileObj.file, fileObj.file.name); } });
 
     if ( this.id ) {
       // Filter the URLs that came from the BackEnd to check if the user delete some picture
-      this.fileList.map( fileObj =>{ if(fileObj.file == null) { formData.append('imagesUrls', fileObj.imageUrl); } });
+      this.fileList.map( fileObj => { if (fileObj.file == null) { formData.append('imagesUrls', fileObj.imageUrl); } });
       await this.productService.update(this.id, formData);
     } else {
       await this.productService.create(formData);
@@ -73,7 +73,10 @@ export class ProductFormComponent{
     }
   }
 
-  onFileChange(event) {
+  onFileChange(event: FileUrl[]) {
     this.fileList = event;
+
+    // Get the Products Urls from file-update Component and refresh the products imagesUrls
+    this.product.imagesUrls = event.map(x => x.imageUrl);
   }
 }

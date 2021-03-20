@@ -18,7 +18,7 @@ export class FileUpdateComponent implements OnChanges  {
   constructor() { }
 
   ngOnChanges(changes) {
-    if (changes.imageList) {
+    if (changes.imageList && this.fileList.length === 0) {
       changes.imageList.currentValue?.forEach(imgUrl => {
         this.fileList.push({file: null, imageUrl: imgUrl});
        });
@@ -29,11 +29,11 @@ export class FileUpdateComponent implements OnChanges  {
 
   showPrevNextButtons() {
     // Wait until the View is Completed to show the previous and next button if scrollBar is visible
-    setTimeout(() => {
-      const ow = this.rowImages?.nativeElement.offsetWidth;
-      const sw = this.rowImages?.nativeElement.scrollWidth;
-      this.scrollShowing = (sw > ow) ? true : false;
-    }, 50);
+      setTimeout(() => {
+        const ow = this.rowImages?.nativeElement.offsetWidth;
+        const sw = this.rowImages?.nativeElement.scrollWidth;
+        this.scrollShowing = (sw > ow) ? true : false;
+      }, 50);
   }
 
   async onFileSelected(event) {
@@ -46,7 +46,12 @@ export class FileUpdateComponent implements OnChanges  {
 
     this.addImage.nativeElement.value = ''; // Reset File Input to allow the submittion of the same file multiple times.
 
-    this.showPrevNextButtons(); // Show Previous and Next buttons when the scrollbar is visible
+    await this.showPrevNextButtons(); // Show Previous and Next buttons when the scrollbar is visible
+
+    // Scroll Right
+    setTimeout(() => {
+      this.rowImages.nativeElement.scrollLeft = this.rowImages.nativeElement.scrollWidth - this.rowImages.nativeElement.clientWidth;
+    }, 60);
   }
 
   parseFile(file: File) {
