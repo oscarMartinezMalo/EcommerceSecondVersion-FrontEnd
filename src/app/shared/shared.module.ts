@@ -29,14 +29,14 @@ import { FileUpdateComponent } from './components/file-update/file-update.compon
     ModalComponent,
     ErrorPageComponent,
     ConfirmModalComponent,
-    FileUpdateComponent
+    FileUpdateComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     NgbModule,
     HttpClientModule,
-    RxReactiveFormsModule
+    RxReactiveFormsModule,
   ],
   exports: [
     ProductCardComponent,
