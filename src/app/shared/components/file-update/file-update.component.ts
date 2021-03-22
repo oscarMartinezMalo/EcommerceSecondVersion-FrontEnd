@@ -16,7 +16,7 @@ export class FileUpdateComponent implements OnChanges  {
   imageAddUrl = './assets/addProduct.png';
   fileList: FileUrl[] = [];
   scrollShowing = false;
-  validFileExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
+  validFileExtensions = ['jpg', 'jpeg', 'png', 'gif'];
 
   constructor() { }
 
@@ -41,7 +41,13 @@ export class FileUpdateComponent implements OnChanges  {
 
   async onFileSelected(event) {
     const fileSelected = event.target.files[0];
-    // console.log(fileSelected);
+
+    // Validate the file extension and show a message if is not a correct extension
+    if ( !this.isValidFileExtension(fileSelected)) {
+      alert('Please select one of the follow formats jpg, jpeg, png or gif');
+      return;
+    }
+
     const imageUrl = await this.parseFile(fileSelected) as string;
 
     this.fileList.push({ file: fileSelected, imageUrl });
@@ -56,6 +62,14 @@ export class FileUpdateComponent implements OnChanges  {
     setTimeout(() => {
       this.rowImages.nativeElement.scrollLeft = this.rowImages.nativeElement.scrollWidth - this.rowImages.nativeElement.clientWidth;
     }, 60);
+  }
+
+  isValidFileExtension(fileSelected: any): boolean {
+    const fileExtesion = fileSelected.type.split('/');
+    if (!fileExtesion || fileExtesion.length < 1) {  return false; }
+    if ( this.validFileExtensions.indexOf(fileExtesion[1]) === -1) { return false; }
+
+    return true;
   }
 
   parseFile(file: File) {
@@ -91,3 +105,5 @@ export class FileUpdateComponent implements OnChanges  {
     this.rowImages.nativeElement.scrollTo({ left: (this.rowImages.nativeElement.scrollLeft - imagesContainerWidth), behavior: 'smooth' });
   }
 }
+
+

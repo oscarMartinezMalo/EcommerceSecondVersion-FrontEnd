@@ -11,7 +11,7 @@ export class UploadFileExtentionValidatorDirective {
 
   @HostListener('change', ['$event.target'])
   onChange(target) {
-    console.log('in change InputTextFilterDirective', target.files[0]);
+    // console.log('in change InputTextFilterDirective', target.files[0]);
 
     (this.el.nativeElement as HTMLInputElement).value.trim();
   }
