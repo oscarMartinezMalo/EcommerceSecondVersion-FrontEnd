@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, HostListener, Input, OnChanges, AfterViewChecked, OnDestroy,  } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, HostListener, Input, OnChanges, OnDestroy,  } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 import { FileUrl } from './fileUrl.model';
 
@@ -11,10 +11,13 @@ export class FileUpdateComponent implements OnChanges  {
   @Output() newItemEvent = new EventEmitter<FileUrl[]>();
   @Input() imageList: string[];
   @ViewChild('addImage') addImage: ElementRef;
+  @ViewChild('rowImages', { read: ElementRef }) rowImages: ElementRef;
+
   imageAddUrl = './assets/addProduct.png';
   fileList: FileUrl[] = [];
-  @ViewChild('rowImages', { read: ElementRef }) rowImages: ElementRef;
   scrollShowing = false;
+  validFileExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
+
   constructor() { }
 
   ngOnChanges(changes) {
@@ -38,6 +41,7 @@ export class FileUpdateComponent implements OnChanges  {
 
   async onFileSelected(event) {
     const fileSelected = event.target.files[0];
+    // console.log(fileSelected);
     const imageUrl = await this.parseFile(fileSelected) as string;
 
     this.fileList.push({ file: fileSelected, imageUrl });

@@ -27,7 +27,8 @@
     <div class="col-3 p-0 text-center">
           <div class="form-group">
             <div class="image-element">
-              <input #addImage style="display: none;" type="file" (change)="onFileSelected($event)" id="image-0" required />
+              <input #addImage style="display: none;" type="file" (change)="onFileSelected($event)" id="image-0"
+              accept=".jpg,.jpeg,.png,.gif" required appUploadFileExtentionValidator/>
               <i class="fa fa-plus add-icon" (click)="addImage.click();"></i>
             </div>
           </div>

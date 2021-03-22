@@ -20,6 +20,7 @@ import { ShoppingCartService } from './services/shopping-cart.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 import { FileUpdateComponent } from './components/file-update/file-update.component';
+import { UploadFileExtentionValidatorDirective } from './services/upload-file-extention-validator.directive';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { FileUpdateComponent } from './components/file-update/file-update.compon
     ErrorPageComponent,
     ConfirmModalComponent,
     FileUpdateComponent,
+    UploadFileExtentionValidatorDirective,
   ],
   imports: [
     CommonModule,

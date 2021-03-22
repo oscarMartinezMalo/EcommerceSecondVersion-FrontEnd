@@ -33,14 +33,19 @@ export class ProductFormComponent{
 
     this.id = this.route.snapshot.paramMap.get('id');
     if ( this.id ) {
-      this.productService.getById(this.id).pipe(take(1)).subscribe( p =>{
+      this.productService.getById(this.id).pipe(take(1)).subscribe( (p: Product) => {
         this.product = p;
+
+        // Add the urls that came from the server to the fileList
+        this.fileList = p.imagesUrls.map((imageUrl) => {
+          return { file: null, imageUrl };
+        } ) as FileUrl[];
       } );
     }
   }
 
   async onSave( product: Product) {
-    if (this.fileList.length < 1) {
+    if (this.product.imagesUrls.length < 1) {
       const modalRef = this.modalService.open(ModalComponent);
       modalRef.componentInstance.title = 'Warning';
       modalRef.componentInstance.message = 'You have to select at least one Image';
@@ -58,7 +63,10 @@ export class ProductFormComponent{
 
     if ( this.id ) {
       // Filter the URLs that came from the BackEnd to check if the user delete some picture
-      this.fileList.map( fileObj => { if (fileObj.file == null) { formData.append('imagesUrls', fileObj.imageUrl); } });
+      this.fileList.map( fileObj => { if (fileObj.file == null) {
+        formData.append('imagesUrls', fileObj.imageUrl);
+      } });
+
       await this.productService.update(this.id, formData);
     } else {
       await this.productService.create(formData);
