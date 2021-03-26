@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { ShoppingModule } from './shopping/components/shopping.module';
-
 // import { AdminModule } from './admin/admin.module';
 @NgModule({
   declarations: [

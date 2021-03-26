@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, HostListener, Input, OnChanges, OnDestroy,  } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from '../modal/modal.component';
 import { FileUrl } from './fileUrl.model';
 
 @Component({
@@ -18,7 +20,9 @@ export class FileUpdateComponent implements OnChanges  {
   scrollShowing = false;
   validFileExtensions = ['jpg', 'jpeg', 'png', 'gif'];
 
-  constructor() { }
+  constructor(
+    private modalService: NgbModal
+    ) { }
 
   ngOnChanges(changes) {
     if (changes.imageList && this.fileList.length === 0) {
@@ -44,7 +48,9 @@ export class FileUpdateComponent implements OnChanges  {
 
     // Validate the file extension and show a message if is not a correct extension
     if ( !this.isValidFileExtension(fileSelected)) {
-      alert('Please select one of the follow formats jpg, jpeg, png or gif');
+      const modalRef = this.modalService.open(ModalComponent);
+      modalRef.componentInstance.title = 'Warning';
+      modalRef.componentInstance.message = 'Please select a Picture with one of the follow formats jpg, jpeg, png or gif';
       return;
     }
 

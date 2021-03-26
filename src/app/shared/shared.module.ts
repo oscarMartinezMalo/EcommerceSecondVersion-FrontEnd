@@ -20,7 +20,7 @@ import { ShoppingCartService } from './services/shopping-cart.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 import { FileUpdateComponent } from './components/file-update/file-update.component';
-import { UploadFileExtentionValidatorDirective } from './services/upload-file-extention-validator.directive';
+import { ToastsContainerComponent } from './components/toasts-container/toasts-container.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import { UploadFileExtentionValidatorDirective } from './services/upload-file-ex
     ErrorPageComponent,
     ConfirmModalComponent,
     FileUpdateComponent,
-    UploadFileExtentionValidatorDirective,
+    ToastsContainerComponent,
   ],
   imports: [
     CommonModule,
@@ -50,6 +50,7 @@ import { UploadFileExtentionValidatorDirective } from './services/upload-file-ex
     ConfirmModalComponent,
     FileUpdateComponent,
     RxReactiveFormsModule,
+    ToastsContainerComponent,
     ErrorPageComponent
   ],
   providers: [

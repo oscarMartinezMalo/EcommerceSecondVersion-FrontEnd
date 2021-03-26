@@ -17,7 +17,7 @@ export class AppErrorHandler implements ErrorHandler {
     // }
 
     if (error instanceof UserNotAuthenticated) {
-      console.log('userNotAuthen');
+      console.log('userNotAuthenticated');
     }
     console.log(error);
   }

@@ -18,12 +18,12 @@ export class ResetPasswordComponent implements OnInit {
   resetPasswordForm: FormGroup;
   errorMessage='';
 
-  constructor(    
+  constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
     private modalService: NgbModal
-  ) { 
+  ) {
     this.resetPasswordForm = this.fb.group({
       currentPassword: ['', [Validators.required,  Validators.minLength(6)]],
         newPassword: ['', [Validators.required, Validators.minLength(6)]],
@@ -50,7 +50,7 @@ export class ResetPasswordComponent implements OnInit {
         (error: AppError) => {
           if (error instanceof WrongCredentialError) {
             this.resetPasswordForm.setErrors({ userPass: true });
-          } else { 
+          } else {
             this.errorMessage =  error.getErrorMessage();
            }
         });
@@ -62,5 +62,4 @@ export class ResetPasswordComponent implements OnInit {
     modalRef.componentInstance.title = 'Password successfully changed';
     modalRef.componentInstance.message = 'Please Login with your new password.';
   }
-  
 }
