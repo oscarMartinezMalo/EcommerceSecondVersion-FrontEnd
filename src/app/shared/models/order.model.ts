@@ -17,7 +17,6 @@ export class Order {
         product: {
           id: i.product.id,
           title: i.product.title,
-          imageUrl: i.product.imageUrl,
           price: i.product.price
         },
         quantity: i.quantity,
