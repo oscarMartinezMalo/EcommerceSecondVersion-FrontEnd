@@ -57,9 +57,12 @@ export class ProductFormComponent{
     // Submit the form as FormData to also send files
     const formData = new FormData();
     formData.append('title', product.title);
+    formData.append('subtitle', product.subtitle);
     formData.append('price', product.price.toString());
-    formData.append('category', product.category );
-    formData.append('imageUrl', product.imageUrl);
+    formData.append('description', product.description);
+    formData.append('category', product.category);
+    formData.append('subcategory', product.subcategory);
+    formData.append('stockQuantity', product.stockQuantity.toString());
     // Add the files that were attach to the formData
     this.fileList.forEach(fileObj => {  if (fileObj.file) { formData.append('files', fileObj.file, fileObj.file.name); } });
 
@@ -70,11 +73,11 @@ export class ProductFormComponent{
           formData.append('imagesUrls', fileObj.imageUrl);
         } });
         await this.productService.update(this.id, formData);
-        this.router.navigate(['/admin/products']);
-
       } else {
         await this.productService.create(formData);
       }
+
+      this.router.navigate(['/admin/products']);
     } catch (error) {
       this.openPopUp('Error', 'Something went wrong.Please fill the form again and upload, up to 5 picture.');
     }
