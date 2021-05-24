@@ -18,7 +18,8 @@ export class OrderDetailsComponent {
   ) {
     const orderId = this.route.snapshot.paramMap.get('id');
     if (orderId) {
-      this.orderService.getOrderById(orderId).then(order => { this.order = order; });
+      this.orderService.getOrderById(orderId).then(order => { this.order = order;
+      console.log(order) });
     }
   }
 

@@ -4,7 +4,7 @@
       <h4 class="card-title mb-0">Order Summary</h4>
     </div>
     <div class="card-body">
-      <img *ngFor="let itemPic of order.items" [src]="itemPic.product.imageUrl" class="thumbnail" alt="Item Picture">
+      <img *ngFor="let itemPic of order.items" [src]="itemPic.product.imagesUrls[0]" class="thumbnail" alt="Item Picture">
       <p class="card-text">You ordered {{order.items.length}} items</p>
       <ul class="list-group list-group-flush">
         <li *ngFor="let item of order.items" class="list-group-item">

@@ -70,6 +70,8 @@ export class ShippingFormComponent {
    this.shippingForm.markAllAsTouched();
     if(this.shippingForm.valid && this.shippingForm.touched) {
       const order = new Order(this.user.id, this.shippingForm.value, this.cart);
+      
+   console.log("CartHEr",order);
       await this.orderService.loadPaypalOrder(order);  // Store the order in the service
       // Check for Errors here
       this.router.navigate(['/secure-checkout']);

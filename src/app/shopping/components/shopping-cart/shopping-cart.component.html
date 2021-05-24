@@ -20,8 +20,8 @@
       <tbody @slide>
         <tr *ngFor="let item of cart?.items">
           <td style="width: 80px;" class="d-none d-md-table-cell">
-            <!-- <img [src]="item.product.imageUrl" class="thumbnail" alt=""> -->
-            <div [style.backgroundImage]="'url(' + item.product.imageUrl +')'" class="thumbnail"></div>
+            <img [src]="item.product.imagesUrls[0]" class="thumbnail" alt="">            
+            <!-- <div [style.backgroundImage]="'url(' + item.product.imagesUrls[0] +')'" class="thumbnail"></div> -->
           </td>
           <td class="text-center">{{ item.product.title }}</td>
           <td>

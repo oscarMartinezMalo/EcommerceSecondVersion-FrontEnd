@@ -1,14 +1,16 @@
 <div class="my-container">
-  <h1>SECURE SCHECKOUT</h1>
+  <h1 class="text-center mb-2">SECURE CHECKOUT</h1>
   <!-- <div class="row justify-content-center" *ngIf="cart$ | async as cart">
   </div> -->
-  <div #paypal></div>
-
-  <div class="row justify-content-center" *ngIf="cart$ | async as cart">
-    <div>
-      <app-shopping-cart-summary [cart]="cart"></app-shopping-cart-summary>
+  <div class="row mt-5">
+    <div class="col justify-content-center" *ngIf="cart$ | async as cart">
+      <div>
+        <app-shopping-cart-summary [cart]="cart"></app-shopping-cart-summary>
+      </div>
     </div>
-</div>
+    
+    <div #paypal class="col"></div>
+  </div>
 
 <div id="overlay" [ngStyle]="{'display': spinner}">
   <div class="spinner"></div>
