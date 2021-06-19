@@ -27,3 +27,7 @@ Step to run project locally
     3.- docker run -d --rm -p 4200:80 --name frontend ecommercefrontend
 
 Open browser localhost:4200
+
+
+Step to run project locally from DockerHub
+    1.- docker run -d --rm -p 4200:80 ommalor/ecommerce-frontend
