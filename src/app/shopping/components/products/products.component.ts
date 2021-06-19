@@ -7,6 +7,7 @@ import { ShoppingCartService } from '../../../shared/services/shopping-cart.serv
 import { ShoppingCart } from '../../../shared/models/shopping-cart.model';
 import { Observable } from 'rxjs';
 import { fadeEnter } from 'src/animations';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-products',
