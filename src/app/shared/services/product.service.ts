@@ -15,6 +15,7 @@ export class ProductService {
   ) { }
 
   create(product) {
+    console.log(product);
     return this.http.post(this.BASE_URL, product).
       pipe(take(1),
         catchError((error: Response) => {

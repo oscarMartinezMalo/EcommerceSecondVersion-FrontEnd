@@ -57,12 +57,12 @@ export class ProductFormComponent{
     // Submit the form as FormData to also send files
     const formData = new FormData();
     formData.append('title', product.title);
-    formData.append('subtitle', product.subtitle);
+    // formData.append('subtitle', product.subtitle);
     formData.append('price', product.price.toString());
-    formData.append('description', product.description);
+    // formData.append('description', product.description);
     formData.append('category', product.category);
-    formData.append('subcategory', product.subcategory);
-    formData.append('stockQuantity', product.stockQuantity.toString());
+    formData.append('imageUrl', product.subcategory);
+    // formData.append('stockQuantity', product.stockQuantity.toString());
     // Add the files that were attach to the formData
     this.fileList.forEach(fileObj => {  if (fileObj.file) { formData.append('files', fileObj.file, fileObj.file.name); } });
 
@@ -83,7 +83,7 @@ export class ProductFormComponent{
     }
   }
 
-  async delete() {
+  async onDelete() {
     if ( confirm('Are you sure you want to delete this product')) {
       try {
         await this.productService.delete(this.id);
